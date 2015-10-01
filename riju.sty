@@ -1,0 +1,50 @@
+%Standard Packages
+\usepackage{enumerate,amsmath,amssymb,amsthm,graphicx,subcaption,wrapfig,array,url,bm,mathtools,mathrsfs,pdflscape,multirow}
+%NOTE: Archival documents using `subfig' are incompatible with this version of `riju'. For these, change `subcaption' to `subfig'.
+
+%Custom Commands
+\newcommand{\parchg}{\vspace{2mm}\noindent}
+%Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+%Shorteners
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\msf}[1]{\mathsf{#1}}
+\newcommand{\cc}[1]{\overline{#1}}
+\newcommand{\lip}{\langle}
+\newcommand{\rip}{\rangle}
+\newcommand{\vc}[1]{\mathbf{#1}}
+\newcommand{\vcg}[1]{\bm{#1}}
+\newcommand{\bnabla}{\bm{\nabla}}
+%Homework Related
+\newcommand{\nprob}[1]{\vspace{5mm}\noindent\textbf{Problem #1}}
+\newcommand{\nprobns}[1]{\noindent\textbf{Problem #1}}
+%Macros
+\newcommand{\st}{\;\middle\vert\;}
+\newcommand{\units}[1]{\;\mathrm{#1}}
+\newcommand{\unitr}[1]{\vc{\hat{#1}}}
+\newcommand{\unitg}[1]{\vcg{\hat{#1}}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dif}{\ensuremath{\mathrm{d}}}
+\newcommand{\deriv}[2]{\frac{\dif #1}{\dif #2}}
+\graphicspath{{~/texmf/tex/latex/riju/}}
+%Quantum Mechanics
+\newcommand{\bra}[1]{\left\lip #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right\rip}
+\newcommand{\ip}[2]{\left\lip #1 \middle\vert #2 \right\rip}
+\newcommand{\melem}[3]{\left\lip #1 \left| #2 \right| #3 \right\rip}
+\newcommand{\ev}[1]{\left\lip #1 \right\rip}
+%Adding an 's' to an \rs command means 'superscript' size
+\newcommand{\rs}{\includegraphics[width = .6em, height = .5em]{ScriptR}}
+\newcommand{\rss}{\includegraphics[width = .48em, height = .4em]{ScriptR}}
+\newcommand{\brs}{\includegraphics[width = .6em, height = .5em]{BoldR}}
+\newcommand{\brss}{\includegraphics[width = .48em, height = .4em]{BoldR}}
+\newcommand{\unitrs}{\ensuremath{\mathbf{\hat{\includegraphics[width = .6em, height = .5em]{BoldR}}}}}
+\newcommand{\unitrss}{\ensuremath{\mathbf{\hat{\includegraphics[width = .48em, height = .4em]{BoldR}}}}}
+
+%Top Matter (archival)
+\def\physadvaut{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{Nitin Egbert}\\\textsc{Physics 111 -- Advanced}\\\textsc{University of California, Berkeley}}
+\newcommand{\otheraut}[2]{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{#1, #2}}
