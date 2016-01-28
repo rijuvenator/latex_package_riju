@@ -1,50 +1,119 @@
-%Standard Packages
-\usepackage{enumerate,amsmath,amssymb,amsthm,graphicx,subcaption,wrapfig,array,url,bm,mathtools,mathrsfs,pdflscape,multirow}
-%NOTE: Archival documents using `subfig' are incompatible with this version of `riju'. For these, change `subcaption' to `subfig'.
+% --- RIJU STYLE PACKAGE ---
 
-%Custom Commands
-\newcommand{\parchg}{\vspace{2mm}\noindent}
-%Sets
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\C}{\mathbb{C}}
-%Shorteners
-\newcommand{\mbb}[1]{\mathbb{#1}}
-\newcommand{\msf}[1]{\mathsf{#1}}
-\newcommand{\cc}[1]{\overline{#1}}
-\newcommand{\lip}{\langle}
-\newcommand{\rip}{\rangle}
-\newcommand{\vc}[1]{\mathbf{#1}}
-\newcommand{\vcg}[1]{\bm{#1}}
-\newcommand{\bnabla}{\bm{\nabla}}
-%Homework Related
-\newcommand{\nprob}[1]{\vspace{5mm}\noindent\textbf{Problem #1}}
-\newcommand{\nprobns}[1]{\noindent\textbf{Problem #1}}
-%Macros
-\newcommand{\st}{\;\middle\vert\;}
-\newcommand{\units}[1]{\;\mathrm{#1}}
-\newcommand{\unitr}[1]{\vc{\hat{#1}}}
-\newcommand{\unitg}[1]{\vcg{\hat{#1}}}
-\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\dif}{\ensuremath{\mathrm{d}}}
-\newcommand{\deriv}[2]{\frac{\dif #1}{\dif #2}}
-\graphicspath{{~/texmf/tex/latex/riju/}}
-%Quantum Mechanics
-\newcommand{\bra}[1]{\left\lip #1 \right|}
-\newcommand{\ket}[1]{\left| #1 \right\rip}
-\newcommand{\ip}[2]{\left\lip #1 \middle\vert #2 \right\rip}
-\newcommand{\melem}[3]{\left\lip #1 \left| #2 \right| #3 \right\rip}
-\newcommand{\ev}[1]{\left\lip #1 \right\rip}
-%Adding an 's' to an \rs command means 'superscript' size
-\newcommand{\rs}{\includegraphics[width = .6em, height = .5em]{ScriptR}}
-\newcommand{\rss}{\includegraphics[width = .48em, height = .4em]{ScriptR}}
-\newcommand{\brs}{\includegraphics[width = .6em, height = .5em]{BoldR}}
-\newcommand{\brss}{\includegraphics[width = .48em, height = .4em]{BoldR}}
-\newcommand{\unitrs}{\ensuremath{\mathbf{\hat{\includegraphics[width = .6em, height = .5em]{BoldR}}}}}
-\newcommand{\unitrss}{\ensuremath{\mathbf{\hat{\includegraphics[width = .48em, height = .4em]{BoldR}}}}}
+% OPTIONS
+	% defines subfig and subcaption options, loading the relevant package
+	% IMPORTANT: As of January 28, 2016, neither subfigure package is loaded by default
+	% This is so that old documents using subfig can use it, while new documents can use subcaption, and beamer can just not load either
+	\DeclareOption{subfig}{\usepackage{subfig}}
+	\DeclareOption{subcaption}{\usepackage{subcaption}}
 
-%Top Matter (archival)
-\def\physadvaut{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{Nitin Egbert}\\\textsc{Physics 111 -- Advanced}\\\textsc{University of California, Berkeley}}
-\newcommand{\otheraut}[2]{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{#1, #2}}
+	\newif\ifcernbeamer
+	\DeclareOption{cernbeamer}{\cernbeamertrue}
+
+	\ProcessOptions\relax
+
+	% defines CERN talk beamer options
+	\ifcernbeamer
+			% redefines beamer's Tiny (4pt) to standard tiny (5pt)
+		\let\Tiny=\tiny 
+			% base themes
+		\usetheme{Madrid}
+		\usecolortheme{dolphin}
+			% enables color links, then makes standard links white (so that the title at the bottom is white)
+		\hypersetup{colorlinks=true,linkcolor=white}
+			% now use \rref for standard links; I think the linkcolor gets reset to white
+		\newcommand{\rref}[1]{\hypersetup{linkcolor=blue}\ref{#1}}
+			% bibitems with icons are dumb
+		\setbeamertemplate{bibliography item}[text]
+			% this probably isn't necessary anymore
+		\setbeamertemplate{title page}[default][rounded=true]
+			% some caption options
+		\setbeamertemplate{caption}{\insertcaption}
+		\setbeamertemplate{caption label separator}{}
+			% the itemize hierarchy
+		\setbeamertemplate{itemize item}[square]
+		\setbeamertemplate{itemize subitem}[circle]
+		\setbeamertemplate{itemize subsubitem}[triangle]
+			% the title page logos
+		\newcommand{\setCCUTitleLogo}{
+			\titlegraphic{
+				\includegraphics[width=1.5cm]{CERNLogo.pdf}\hspace{1em}
+				\includegraphics[width=1.5cm]{CMSLogo.pdf}\hspace{1em}
+				\includegraphics[width=1.5cm]{UCLALogo.pdf}
+			}
+		}
+			% the top right corner slide logos
+		\newcommand{\setCCUSlideLogo}{
+			\logo{
+				\includegraphics[width=1cm]{CERNLogo.pdf}\hspace{1em}
+				\includegraphics[width=1cm]{CMSLogo.pdf}\hspace{1em}
+				\includegraphics[width=1cm]{UCLALogo.pdf}\hspace{1em}\vspace*{30.6\baselineskip} % it used to be 43, try changing it (and the Tiny thing)
+			}
+		}
+	\else
+	\fi
+
+% STANDARD PACKAGES
+	\usepackage{enumerate,amsmath,amssymb,amsthm,graphicx,wrapfig,array,url,bm,mathtools,mathrsfs,pdflscape,multirow}
+%	\graphicspath{{~/texmf/tex/latex/riju/}} % package file path; so that this package will find the image files
+
+% FORMATTING
+	\newcommand{\parchg}{\vspace{2mm}\noindent}	% paragraphs in articles look better without indents and with spaces
+
+% SETS
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Q}{\mathbb{Q}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\C}{\mathbb{C}}
+
+% VECTORS AND BOLD
+	\newcommand{\vc}[1]{\mathbf{#1}}				% roman bold; I could redefine \vec, but I prefer not to; \bm{<roman>} works but it's italic
+	\newcommand{\vcg}[1]{\bm{#1}}						% greek bold
+	\newcommand{\unitr}[1]{\vc{\hat{#1}}}		% roman unit vector (bold hat)
+	\newcommand{\unitg}[1]{\vcg{\hat{#1}}}	% greek unit vector (bold hat)
+	\newcommand{\bnabla}{\bm{\nabla}}				% bold nabla
+
+% DERIVATIVES AND DIFFERENTIALS
+	\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}	% partial derivative
+	\newcommand{\dif}{\ensuremath{\mathrm{d}}}						% (roman) differential (for use in integrals and derivatives)
+	\newcommand{\deriv}[2]{\frac{\dif #1}{\dif #2}}				% derivative
+
+% MISCELLANEOUS MATHEMATICS
+	\newcommand{\mbb}[1]{\mathbb{#1}}
+	\newcommand{\msf}[1]{\mathsf{#1}}
+	\newcommand{\units}[1]{\;\mathrm{#1}}
+	\newcommand{\unitssf}[1]{\;\mathsf{#1}}
+
+	\newcommand{\cc}[1]{\overline{#1}}					  % complex conjugate
+	\newcommand{\lip}{\langle}									  % left inner product
+	\newcommand{\rip}{\rangle}									  % right inner product
+	\newcommand{\st}{\;\middle\vert\;}					  % such that
+	\newcommand{\inv}[1]{\ensuremath{{#1}^{-1}}}	% inverse
+
+% QUANTUM MECHANICS
+	\newcommand{\bra}[1]{\left\langle #1 \right|}																% bra
+	\newcommand{\ket}[1]{\left| #1 \right\rangle}																% ket
+	\newcommand{\ip}[2]{\left\langle #1 \middle\vert #2 \right\rangle}					% inner product
+	\newcommand{\melem}[3]{\left\langle #1 \left| #2 \right| #3 \right\rangle}	% matrix element
+	\newcommand{\ev}[1]{\left\langle #1 \right\rangle}													% expected value
+
+% GRIFFITHS SCRIPT R
+	% Adding an 's' to an \rs command means 'superscript' size
+	\newcommand{\rs}{\includegraphics[width = .6em, height = .5em]{ScriptR}}
+	\newcommand{\rss}{\includegraphics[width = .48em, height = .4em]{ScriptR}}
+	\newcommand{\brs}{\includegraphics[width = .6em, height = .5em]{BoldR}}
+	\newcommand{\brss}{\includegraphics[width = .48em, height = .4em]{BoldR}}
+	\newcommand{\unitrs}{\ensuremath{\mathbf{\hat{\includegraphics[width = .6em, height = .5em]{BoldR}}}}}
+	\newcommand{\unitrss}{\ensuremath{\mathbf{\hat{\includegraphics[width = .48em, height = .4em]{BoldR}}}}}
+
+% ARCHIVAL
+% Top Matter
+	% used in BSC labs and possibly other homework assignments
+	\def\physadvaut{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{Nitin Egbert}\\\textsc{Physics 111 -- Advanced}\\\textsc{University of California, Berkeley}}
+	\newcommand{\otheraut}[2]{\textsc{Abhigyan (Riju) Dasgupta}\\\textsc{#1, #2}}
+% Homework Related
+	% probably won't be doing much homework anymore,
+	% although they might be useful in writing solutions
+	\newcommand{\nprob}[1]{\vspace{5mm}\noindent\textbf{Problem #1}}
+	\newcommand{\nprobns}[1]{\noindent\textbf{Problem #1}}
