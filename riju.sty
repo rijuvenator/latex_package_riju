@@ -1,16 +1,26 @@
 % --- RIJU STYLE PACKAGE ---
 
 % OPTIONS
-	% defines subfig and subcaption options, loading the relevant package
+
 	% IMPORTANT: As of January 28, 2016, neither subfigure package is loaded by default
 	% This is so that old documents using subfig can use it, while new documents can use subcaption, and beamer can just not load either
-	\DeclareOption{subfig}{\usepackage{subfig}}
-	\DeclareOption{subcaption}{\usepackage{subcaption}}
-
+	\newif\ifrijusubfig
+	\DeclareOption{subfig}{\rijusubfigtrue}
+	\newif\ifrijusubcaption
+	\DeclareOption{subcaption}{\rijusubcaptiontrue}
 	\newif\ifcernbeamer
 	\DeclareOption{cernbeamer}{\cernbeamertrue}
-
 	\ProcessOptions\relax
+
+% END OPTIONS
+
+	% loads relevant package based on subfig or subcaption options
+	\ifrijusubfig
+		\usepackage{subfig}
+	\fi
+	\ifrijusubcaption
+		\usepackage{subcaption}
+	\fi
 
 	% defines CERN talk beamer options
 	\ifcernbeamer
