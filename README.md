@@ -16,4 +16,5 @@ The `cernbeamer` option loads my `beamer` template modifications:
   * changes theme, colors, list symbols, caption options
 
 Also included is my talk template implementing this template, and a cleanup script for removing junk files.  
-A new talk should be a folder containing `cleanup.sh` and `template.tex`.
+Also included is an approximation of my talk template in PowerPoint format.  
+A new talk should be a folder containing `cleanup.sh`, `template.tex`, and `template.pptx`.
