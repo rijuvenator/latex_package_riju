@@ -13,6 +13,7 @@ The `subfig` and `subcaption` options optionally load the respective package.
 The `cernbeamer` option loads my `beamer` template modifications:
   * suppresses font warnings (`textcomp` package; redefining `\Tiny`)
   * defines commands for adding logos
+    * New: CSC Logo and associated commands added; `.pptx` included as well.
   * changes theme, colors, list symbols, caption options
 
 Also included is my talk template implementing this template, and a cleanup script for removing junk files.  
